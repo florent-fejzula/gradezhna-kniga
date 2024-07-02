@@ -51,11 +51,17 @@
   <div class="top_part">
     <div class="row">
       <div class="column gradbaBroj">
-        <textarea
+        <!-- <textarea
           cdkTextareaAutosize
           class="gradbaBrojInput"
           [(ngModel)]="gradezhnaKnigaInput"
-        ></textarea>
+        ></textarea> -->
+        <div
+          contenteditable="true"
+          [(ngModel)]="gradezhnaKnigaInput"
+          class="gradbaBrojInput"
+          spellcheck="false"
+        ></div>
       </div>
       <div class="column wide">
         <div class="gradba">

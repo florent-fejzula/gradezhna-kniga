@@ -138,9 +138,13 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  // underlineText(): void {
-  //   document.execCommand('underline', false, '');
-  // }
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key === ' ') {
+      event.preventDefault();
+      this.insertHorizontalLine();
+    }
+  }
 
   applyTableBodyHeight() {
     const mainTableWrapper = document.querySelector('.mainTable-wrapper') as HTMLElement;
@@ -168,7 +172,6 @@ export class AppComponent implements AfterViewInit {
     if (!result.canceled && result.filePath) {
       const filePath = result.filePath;
       this.fileName = this.extractFileName(filePath);
-      // You can also load and process the file content here if needed
     }
   }
 
@@ -261,25 +264,6 @@ export class AppComponent implements AfterViewInit {
       console.error('saveAsPDF function is not available');
     }
   }
-
-  // printPage() {
-  //   if ((window as any).electron && (window as any).electron.printPage) {
-  //     (window as any).electron
-  //       .printPage()
-  //       .then((result: any) => {
-  //         if (result.success) {
-  //           console.log('Print job started');
-  //         } else {
-  //           console.error('Failed to start print job:', result.error);
-  //         }
-  //       })
-  //       .catch((error: any) => {
-  //         console.error('Error during print:', error);
-  //       });
-  //   } else {
-  //     console.error('printPage function is not available');
-  //   }
-  // }
 
   printPage() {
     window.print();
