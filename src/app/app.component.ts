@@ -216,7 +216,7 @@ export class AppComponent implements AfterViewInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-      this.fileName = file.name;
+      this.fileName = (file as any).path || file.name;
 
       const reader = new FileReader();
       reader.onload = (e) => {
